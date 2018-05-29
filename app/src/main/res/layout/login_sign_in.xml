@@ -23,6 +23,7 @@
                 android:textColorHint="#ffffff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/username"
                 android:hint="@string/user"
                 android:ems="10"
                 android:inputType="text"
@@ -37,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
+                android:id="@+id/password"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:layout_marginTop="10dp"
@@ -48,8 +50,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
+                android:id="@+id/sign"
                 android:background="@drawable/border"
-                android:text="@string/sign_up"
+                android:text="@string/login"
                 android:layout_marginBottom="100dp"/>
             <View
                 android:layout_width="100dp"

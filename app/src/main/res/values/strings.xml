@@ -20,5 +20,6 @@
     <string name="comunicate">Comunicate</string>
     <string name="action_settings">Configuración</string>
     <string name="sign_in">Ingreso</string>
+    <string name="login">SIGN IN</string>
 
 </resources>
