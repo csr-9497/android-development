@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">plasiette</string>
+    <string name="user">USERNAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="email">E-MAIL</string>
+    <string name="phone">TELEPHONE</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="cancel">cancel</string>
+</resources>
