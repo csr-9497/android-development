@@ -9,7 +9,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_sign_up);
+        setContentView(R.layout.activity_dashboard);
     }
     Intent intent= new Intent(MainActivity.this, dashboard.class);
 }

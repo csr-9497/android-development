@@ -19,6 +19,7 @@
     <string name="Report">Reportar error</string>
     <string name="comunicate">Comunicate</string>
     <string name="action_settings">Configuración</string>
-    <string name="sign_in">Ingreso</string>
-
+    <string name="sign_in">Sign in</string>
+    <string name="send">Enviar</string>
+    <string name="logout">Cerrar Sesión</string>
 </resources>
