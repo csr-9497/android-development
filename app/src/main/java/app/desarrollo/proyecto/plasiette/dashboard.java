@@ -1,11 +1,8 @@
 package app.desarrollo.proyecto.plasiette;
 
 import android.content.Intent;
-import android.media.Image;
+import android.icu.text.IDNA;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,9 +10,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,8 +33,16 @@ public class dashboard extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         info_pedido = (ImageView) findViewById(R.id.info_pedido);
-    }
 
+
+        ImageView img = (ImageView) findViewById(R.id.info_pedido);
+        img.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+               Intent intent= new Intent(dashboard.this, InfoPedido.class);
+                startActivity(intent);
+            }
+        });
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -49,7 +54,7 @@ public class dashboard extends AppCompatActivity
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.dashboard, menu);
         return true;
@@ -77,26 +82,24 @@ public class dashboard extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.perfil) {
-         //   Intent intent = new Intent(dashboard.this,)
-            // Handle the camera action
+            Toast.makeText(dashboard.this, "dashboard perfil", Toast.LENGTH_LONG).show();
         } else if (id == R.id.pedidos) {
-
+            Toast.makeText(dashboard.this, "dashboard pedidos", Toast.LENGTH_LONG).show();
         } else if (id == R.id.menu) {
-            Intent intent= new Intent(dashboard.this, Pedidos.class);
+            Intent intent = new Intent(dashboard.this, Menu.class);
             startActivity(intent);
-
         } else if (id == R.id.vals) {
-
+            Toast.makeText(dashboard.this, "dashboard valoraciones", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_acerca){
-
+            Toast.makeText(dashboard.this, "dashboard acerca", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_contacto){
-
+            Toast.makeText(dashboard.this, "dashboard contacto", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_calificanos){
-
+            Toast.makeText(dashboard.this, "dashboard calificanos", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_report_error){
-
+            Toast.makeText(dashboard.this, "dashboard reportar error", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_logout){
-
+            Toast.makeText(dashboard.this, "dashboard salir", Toast.LENGTH_LONG).show();
         }
 
 

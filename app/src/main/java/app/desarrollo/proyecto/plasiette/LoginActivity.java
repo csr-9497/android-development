@@ -14,6 +14,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
 
@@ -32,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user = userData.getText().toString();
                 String pass = passData.getText().toString();
-                String strUrl="https://plasiettetest.000webhostapp.com/Authenticate_Login.php";
+                String strUrl="http://plasiettetest.000webhostapp.com/Authenticate_Login.php";
                 new LoginTask().execute(strUrl,user,pass);
             }
         });
@@ -69,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             String result = "";
             try {
                 URL url= new URL(strings[0]);
-                HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
+                HttpURLConnection con = (HttpURLConnection) url.openConnection();
                 con.setRequestMethod("POST");
                 con.setDoInput(true);
                 con.setDoOutput(true);
@@ -111,4 +112,3 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 }
-
