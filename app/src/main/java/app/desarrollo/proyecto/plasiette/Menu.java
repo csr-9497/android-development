@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -19,18 +22,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
 
 public class Menu extends AppCompatActivity {
 
-    int[] images= {R.drawable.comida1,R.drawable.comida2,R.drawable.comida3};
-    String[] comidas= {"comida1", "comida2", "comidar3"};
-    String[] counter= {"0" ,"0","0"};
-
-
+    String[] images;
+    String[] comidas;
+    String[] precios;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -40,18 +39,16 @@ public class Menu extends AppCompatActivity {
         MenuTask menuTask = new MenuTask();
         menuTask.execute(url,ruc);
 
-        ListView listView = (ListView) findViewById(android.R.id.list);
+       // ListView listView = (ListView) findViewById(android.R.id.list);
 
-        CustomAdapter customAdapter= new CustomAdapter();
-        listView.setAdapter(customAdapter);
+        //CustomAdapter customAdapter= new CustomAdapter();
+       // listView.setAdapter(customAdapter);
     }
 
     class CustomAdapter extends BaseAdapter{
-
-
         @Override
         public int getCount() {
-            return images.length;
+            return 5;
         }
 
         @Override
@@ -70,18 +67,19 @@ public class Menu extends AppCompatActivity {
             ImageView imageView= (ImageView) view.findViewById(R.id.imagePlate);
             TextView textView= (TextView) view.findViewById(R.id.comida_title);
 
-            imageView.setImageResource(images[i]);
+            imageView.setImageResource(R.drawable.comida1);
             textView.setText(comidas[i]);
 
             return view;
         }
     }
-    private class MenuTask extends  AsyncTask <String, Void ,Void>{
+    private class MenuTask extends AsyncTask<String, Void, Void> {
+        String platos[]=new String[5];
+        private static final String TAG = "";
 
         @Override
         protected Void doInBackground(String... strings) {
-            String[] platos;
-            String[] precios;
+
             String result = "";
             try {
                 URL url = new URL(strings[0]);
@@ -104,14 +102,29 @@ public class Menu extends AppCompatActivity {
                 BufferedReader bf = new BufferedReader(new InputStreamReader(con.getInputStream()));
                 result = bf.readLine();
 
+
                 JSONObject jsonObject = new JSONObject(result);
-                result = jsonObject.getString("auth");
+                JSONArray jsonArray = jsonObject.getJSONArray("rows");
+                int lengthJsonArr = jsonArray.length();
+                for (int i = 0; i < lengthJsonArr; i++) {
+                    JSONObject jsonChildNode = jsonArray.getJSONObject(i);
+                       Log.i("Log_tag",jsonChildNode.getString("details"));
+                      //precios[i] = jsonChildNode.getString("price");
+                   //   images[i]= jsonChildNode.getString("image");
+                }
                 //jsonObject.getBoolean("auth");
 
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.d(TAG, ""+e);
             }
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
+
 }
