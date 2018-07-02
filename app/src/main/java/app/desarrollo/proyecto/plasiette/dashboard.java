@@ -83,6 +83,8 @@ public class dashboard extends AppCompatActivity
 
         if (id == R.id.perfil) {
             Toast.makeText(dashboard.this, "dashboard perfil", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(dashboard.this, ProfileActivity.class);
+            startActivity(intent);
         } else if (id == R.id.pedidos) {
             Toast.makeText(dashboard.this, "dashboard pedidos", Toast.LENGTH_LONG).show();
         } else if (id == R.id.menu) {
@@ -90,6 +92,8 @@ public class dashboard extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.vals) {
             Toast.makeText(dashboard.this, "dashboard valoraciones", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(dashboard.this, ValoracionActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_acerca){
             Toast.makeText(dashboard.this, "dashboard acerca", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_contacto){

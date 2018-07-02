@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.desarrollo.proyecto.plasiette">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
@@ -22,25 +23,31 @@
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".InfoPedido"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Menu"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".dashboard"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginAcitivitySignUp"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".LoginActivityForgotPassword"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ProfileActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ValoracionActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
