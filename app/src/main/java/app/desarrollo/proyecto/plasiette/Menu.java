@@ -1,5 +1,6 @@
 package app.desarrollo.proyecto.plasiette;
 
+import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -24,6 +25,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 
 public class Menu extends AppCompatActivity {
 
@@ -60,13 +65,14 @@ public class Menu extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             view = getLayoutInflater().inflate(R.layout.menu_row, null);
-            ImageView imageView= (ImageView) view.findViewById(R.id.imagePlate);
+            ImageView imageView =(ImageView) view.findViewById(R.id.imagePlate);
             TextView textView= (TextView) view.findViewById(R.id.comida_title);
             TextView textView2= (TextView) view.findViewById(R.id.price);
 
-            imageView.setImageResource(R.drawable.comida1);
             textView.setText(comidas[i]);
             textView2.setText(precios[i]);
+            imageView.setImageResource(R.drawable.comida1);
+           // Glide.with(context).load(images[i]).into(imageView);
             return view;
         }
     }
