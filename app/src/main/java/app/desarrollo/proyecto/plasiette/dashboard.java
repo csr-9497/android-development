@@ -36,7 +36,10 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class dashboard extends AppCompatActivity
@@ -77,7 +80,9 @@ public class dashboard extends AppCompatActivity
         String url="http://plasiettetest.000webhostapp.com/lastMenuByClient.php";
         String ruc=sharedPreferences.getString("ruc",null);
         String client=sharedPreferences.getString("id",null);
-        String fecha="2018-06-30";
+        Date currentTime = Calendar.getInstance().getTime();
+        String fecha=new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        Toast.makeText(dashboard.this, fecha, Toast.LENGTH_LONG).show();
         PedidosTask pedidosTask = new PedidosTask();
         pedidosTask.execute(url,ruc,client,fecha);
     }
