@@ -2,12 +2,15 @@ package app.desarrollo.proyecto.plasiette;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -93,13 +96,15 @@ public class LoginActivity extends AppCompatActivity {
 
                 JSONObject jsonObject = new JSONObject(result);
                 result=jsonObject.getString("auth");
-                //jsonObject.getBoolean("auth");
-
-
-                // Coloca aqui el retorno (id ,ruc);
-                //valuesEnviroment.setId();
-                //valuesEnviroment.setRuc();
-
+                Log.i("TAG",result);
+                if (result.contentEquals("true")) {
+                    Log.i("TAG","IN HERE");
+                    JSONObject jsonChildNode = jsonObject.getJSONObject("data");
+                    valuesEnviroment.setId(jsonChildNode.getString("id"));
+                    valuesEnviroment.setRuc(jsonChildNode.getString("concesionaria_ruc"));
+                    Log.i("TAG","OUT HERE");
+                }
+                Log.i("TAG",result);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -109,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if(s == "true") {
+            if(s.contentEquals("true")) {
                 Intent intent = new Intent(LoginActivity.this, dashboard.class);
                 startActivity(intent);
             }
