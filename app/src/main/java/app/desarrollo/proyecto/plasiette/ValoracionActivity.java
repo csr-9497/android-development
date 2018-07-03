@@ -1,5 +1,7 @@
 package app.desarrollo.proyecto.plasiette;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -19,6 +22,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -45,19 +49,21 @@ public class ValoracionActivity extends AppCompatActivity {
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-
+        private DownloadImageTask downloadImageTask;
         private List<Rating> mDataset;
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView menu_id,ruc,details,price,image,score;
+            public TextView menu_id,ruc,details,price,score,description;
+            public ImageView image;
             public ViewHolder(View v) {
                 super(v);
-                menu_id = v.findViewById(R.id.menu_id);
-                ruc = v.findViewById(R.id.ruc);
+                //menu_id = v.findViewById(R.id.menu_id);
+                //ruc = v.findViewById(R.id.ruc);
                 details = v.findViewById(R.id.details);
-                price = v.findViewById(R.id.price);
-                image = v.findViewById(R.id.image);
+                //price = v.findViewById(R.id.price);
+                image = v.findViewById(R.id.imagePlate);
                 score = v.findViewById(R.id.score);
+                description = v.findViewById(R.id.description);
             }
         }
 
@@ -76,12 +82,14 @@ public class ValoracionActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             Rating rating = mDataset.get(position);
-            holder.menu_id.setText(rating.getId());
-            holder.ruc.setText(rating.getRuc());
-            holder.details.setText(rating.details);
-            holder.price.setText(rating.price);
-            holder.image.setText(rating.image);
-            holder.score.setText(rating.score);
+            //holder.menu_id.setText(rating.getId());
+            //holder.ruc.setText(rating.getRuc());
+            holder.details.setText(rating.getDetails());
+            //holder.price.setText(rating.price);
+            //downloadImageTask.setBmImage(holder.image);
+            //downloadImageTask.execute(rating.getImage());
+            holder.score.setText(rating.getScore());
+            holder.description.setText(rating.getDescription());
         }
 
         @Override
@@ -133,6 +141,7 @@ public class ValoracionActivity extends AppCompatActivity {
                         rating.setPrice(jsonChildNode.getString("price"));
                         rating.setImage(jsonChildNode.getString("image"));
                         rating.setScore(jsonChildNode.getString("score"));
+                        rating.setDescription(jsonChildNode.getString("description"));
                         list.add(rating);
                     }
                     catch (JSONException e){
@@ -154,6 +163,39 @@ public class ValoracionActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(mLayoutManager);
             mAdapter = new MyAdapter(list);
             mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+
+        private ImageView bmImage;
+
+        public DownloadImageTask() {
+        }
+
+        public ImageView getBmImage() {
+            return bmImage;
+        }
+
+        public void setBmImage(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
         }
     }
 }

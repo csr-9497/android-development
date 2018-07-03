@@ -1,7 +1,7 @@
 package app.desarrollo.proyecto.plasiette;
 
 public class Rating {
-    String id,ruc,details,price,image,score;
+    String id,ruc,details,price,image,score,description;
 
     public Rating() {
     }
@@ -52,5 +52,13 @@ public class Rating {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
