@@ -23,13 +23,14 @@ import java.net.URL;
 public class ProfileActivity extends AppCompatActivity {
 
     Client client = new Client();
+    ValuesEnviroment valuesEnviroment= new ValuesEnviroment();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.client_profile);
         String url="http://plasiettetest.000webhostapp.com/clientById.php";
-        String clientId="11111111";
+        String clientId=valuesEnviroment.getId();
         ProfileTask profileTask = new ProfileTask();
         profileTask.execute(url,clientId);
         //Toast.makeText(this, client.getName(), Toast.LENGTH_LONG).show();

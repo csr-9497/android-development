@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +37,7 @@ public class ValoracionActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    ValuesEnviroment valuesEnviroment= new ValuesEnviroment();
 
 
     @Override
@@ -43,9 +45,11 @@ public class ValoracionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_valoraciones);
         String url="http://plasiettetest.000webhostapp.com/ratingByClientId.php";
-        String clientId="11111111";
+        String clientId=valuesEnviroment.getId();
         ValoracionTask valoracionTask = new ValoracionTask();
         valoracionTask.execute(url,clientId);
+        String a=ValoracionActivity.class.getSimpleName();
+        Toast.makeText(ValoracionActivity.this, a, Toast.LENGTH_LONG).show();
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
@@ -98,7 +102,7 @@ public class ValoracionActivity extends AppCompatActivity {
         }
     }
 
-    private class ValoracionTask extends AsyncTask<String,Void,Void> {
+    class ValoracionTask extends AsyncTask<String,Void,Void> {
         private static final String TAG = "Log TAG: ";
         List<Rating> list = new ArrayList<>();
 

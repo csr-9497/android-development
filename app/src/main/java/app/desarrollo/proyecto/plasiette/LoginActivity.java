@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_sign_in);
+
         final EditText userData = (EditText) findViewById(R.id.username);
         final EditText passData = (EditText) findViewById(R.id.password);
         button = (Button)findViewById(R.id.button_sign_in);
@@ -57,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public class LoginTask extends AsyncTask<String,String,String> {
-
+        ValuesEnviroment valuesEnviroment= new ValuesEnviroment();
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -93,6 +94,12 @@ public class LoginActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject(result);
                 result=jsonObject.getString("auth");
                 //jsonObject.getBoolean("auth");
+
+
+                // Coloca aqui el retorno (id ,ruc);
+                //valuesEnviroment.setId();
+                //valuesEnviroment.setRuc();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

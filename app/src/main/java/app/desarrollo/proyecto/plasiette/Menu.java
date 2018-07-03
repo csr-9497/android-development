@@ -35,13 +35,14 @@ public class Menu extends AppCompatActivity {
     String[] images=new String[5];
     String[] comidas= new String[5];
     String[] precios=new String[5];
+    ValuesEnviroment valuesEnviroment= new ValuesEnviroment();
 
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
         String url="http://plasiettetest.000webhostapp.com/menuByRuc.php";
-        String ruc="11111111111";
+        String ruc=valuesEnviroment.getId();
         MenuTask menuTask = new MenuTask();
         menuTask.execute(url,ruc);
     }
