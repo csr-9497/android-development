@@ -32,24 +32,26 @@
         android:orientation="horizontal">
         <Button
             android:padding="0dp"
+            android:id="@+id/addPlate"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/add"
             android:layout_marginStart="240dp"
             android:layout_marginTop="30dp"
             />
-        <Button
+        <TextView
             android:id="@+id/counter_plate"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/counter"
-            android:text="4"
+            android:text="0"
             android:textAlignment="center"
             android:gravity="center"
             android:layout_marginTop="30dp"
             android:layout_marginStart="2dp"/>
         <Button
             android:padding="0dp"
+            android:id="@+id/resPlate"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:background="@drawable/res"

@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public class LoginTask extends AsyncTask<String,String,String> {
-        ValuesEnviroment valuesEnviroment= new ValuesEnviroment();
         @Override
         protected void onPreExecute() {
             super.onPreExecute();

@@ -24,7 +24,6 @@ import java.net.URL;
 public class ProfileActivity extends AppCompatActivity {
 
     Client client = new Client();
-    ValuesEnviroment valuesEnviroment= new ValuesEnviroment();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

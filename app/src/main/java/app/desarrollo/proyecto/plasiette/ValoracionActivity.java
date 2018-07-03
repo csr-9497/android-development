@@ -40,8 +40,6 @@ public class ValoracionActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    ValuesEnviroment valuesEnviroment= new ValuesEnviroment();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
