@@ -1,5 +1,6 @@
 package app.desarrollo.proyecto.plasiette;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -44,8 +45,9 @@ public class ValoracionActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_valoraciones);
+        SharedPreferences sharedPreferences = getSharedPreferences("Mypref",0);
         String url="http://plasiettetest.000webhostapp.com/ratingByClientId.php";
-        String clientId=valuesEnviroment.getId();
+        String clientId=sharedPreferences.getString("id",null);
         ValoracionTask valoracionTask = new ValoracionTask();
         valoracionTask.execute(url,clientId);
         String a=ValoracionActivity.class.getSimpleName();
