@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +57,6 @@ public class ValoracionActivity extends AppCompatActivity {
     }
 
     public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-        private DownloadImageTask downloadImageTask;
         private List<Rating> mDataset;
 
         public class ViewHolder extends RecyclerView.ViewHolder {
@@ -68,6 +69,11 @@ public class ValoracionActivity extends AppCompatActivity {
                 details = v.findViewById(R.id.details);
                 //price = v.findViewById(R.id.price);
                 image = v.findViewById(R.id.imagePlate);
+                /*if (image==null) {
+                    Toast.makeText(ValoracionActivity.this, "HELLO", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ValoracionActivity.this, "BYE", Toast.LENGTH_LONG).show();
+                }*/
                 score = v.findViewById(R.id.score);
                 description = v.findViewById(R.id.description);
             }
@@ -92,6 +98,12 @@ public class ValoracionActivity extends AppCompatActivity {
             //holder.ruc.setText(rating.getRuc());
             holder.details.setText(rating.getDetails());
             //holder.price.setText(rating.price);
+            if (holder.image==null) {
+                //Toast.makeText(ValoracionActivity.this, "HELLO", Toast.LENGTH_LONG).show();
+            } else {
+                //Toast.makeText(ValoracionActivity.this, "BYE", Toast.LENGTH_LONG).show();
+                Glide.with(getApplicationContext()).load(rating.getImage()).into(holder.image);
+            }
             //downloadImageTask.setBmImage(holder.image);
             //downloadImageTask.execute(rating.getImage());
             holder.score.setText(rating.getScore());
@@ -169,39 +181,6 @@ public class ValoracionActivity extends AppCompatActivity {
             mRecyclerView.setLayoutManager(mLayoutManager);
             mAdapter = new MyAdapter(list);
             mRecyclerView.setAdapter(mAdapter);
-        }
-    }
-
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-
-        private ImageView bmImage;
-
-        public DownloadImageTask() {
-        }
-
-        public ImageView getBmImage() {
-            return bmImage;
-        }
-
-        public void setBmImage(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
         }
     }
 }

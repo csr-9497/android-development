@@ -74,8 +74,8 @@ public class Menu extends AppCompatActivity {
 
             textView.setText(comidas[i]);
             textView2.setText(precios[i]);
-            imageView.setImageResource(R.drawable.comida1);
-           // Glide.with(context).load(images[i]).into(imageView);
+            //imageView.setImageResource(R.drawable.comida1);
+            Glide.with(getApplicationContext()).load(images[i]).into(imageView);
             return view;
         }
     }

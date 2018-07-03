@@ -23,6 +23,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -153,8 +155,8 @@ public class dashboard extends AppCompatActivity
         private List<Rating> mDataset;
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            public TextView menu_id,ruc,details,price,score,description,image;
-            //public ImageView image;
+            public TextView menu_id,ruc,details,price,score,description;
+            public ImageView image;
             public ViewHolder(View v) {
                 super(v);
                 menu_id = v.findViewById(R.id.id);
@@ -186,7 +188,8 @@ public class dashboard extends AppCompatActivity
             //holder.ruc.setText(rating.getRuc());
             holder.details.setText(rating.getDetails());
             holder.price.setText(rating.getPrice());
-            holder.image.setText(rating.getImage());
+            //holder.image.setText(rating.getImage());
+            Glide.with(getApplicationContext()).load(rating.getImage()).into(holder.image);
             //downloadImageTask.setBmImage(holder.image);
             //downloadImageTask.execute(rating.getImage());
             //holder.score.setText(rating.getScore());
