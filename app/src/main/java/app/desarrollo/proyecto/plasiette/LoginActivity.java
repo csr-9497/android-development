@@ -1,5 +1,6 @@
 package app.desarrollo.proyecto.plasiette;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -98,11 +99,12 @@ public class LoginActivity extends AppCompatActivity {
                 result=jsonObject.getString("auth");
                 Log.i("TAG",result);
                 if (result.contentEquals("true")) {
-                    Log.i("TAG","IN HERE");
+                    SharedPreferences sharedPreferences = getSharedPreferences("Mypref",0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
                     JSONObject jsonChildNode = jsonObject.getJSONObject("data");
-                    valuesEnviroment.setId(jsonChildNode.getString("id"));
-                    valuesEnviroment.setRuc(jsonChildNode.getString("concesionaria_ruc"));
-                    Log.i("TAG","OUT HERE");
+                    editor.putString("id", jsonChildNode.getString("id"));
+                    editor.putString("ruc", jsonChildNode.getString("concesionaria_ruc"));
+                    editor.commit();
                 }
                 Log.i("TAG",result);
             } catch (Exception e) {

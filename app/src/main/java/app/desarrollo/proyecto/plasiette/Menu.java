@@ -1,6 +1,7 @@
 package app.desarrollo.proyecto.plasiette;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,9 +41,10 @@ public class Menu extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = getSharedPreferences("Mypref",0);
         setContentView(R.layout.menu);
         String url="http://plasiettetest.000webhostapp.com/menuByRuc.php";
-        String ruc=valuesEnviroment.getId();
+        String ruc=sharedPreferences.getString("ruc",null);
         MenuTask menuTask = new MenuTask();
         menuTask.execute(url,ruc);
     }

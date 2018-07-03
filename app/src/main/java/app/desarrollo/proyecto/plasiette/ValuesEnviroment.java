@@ -1,7 +1,7 @@
 package app.desarrollo.proyecto.plasiette;
 
 public class ValuesEnviroment {
-    String id="11111111";
+    String id;
     String ruc;
 
     public ValuesEnviroment() {

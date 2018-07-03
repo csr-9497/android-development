@@ -1,5 +1,6 @@
 package app.desarrollo.proyecto.plasiette;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,9 +29,10 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences sharedPreferences = getSharedPreferences("Mypref",0);
         setContentView(R.layout.client_profile);
         String url="http://plasiettetest.000webhostapp.com/clientById.php";
-        String clientId=valuesEnviroment.getId();
+        String clientId=sharedPreferences.getString("id",null);
         ProfileTask profileTask = new ProfileTask();
         profileTask.execute(url,clientId);
         //Toast.makeText(this, client.getName(), Toast.LENGTH_LONG).show();
